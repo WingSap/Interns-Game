@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1250395440480155503}
   - component: {fileID: 808223232717900555}
   - component: {fileID: 7062951452672249750}
-  - component: {fileID: 7717391642020005054}
   m_Layer: 0
   m_Name: Player Group Bullet
   m_TagString: Untagged
@@ -99,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9d1636c21b13747b67edc058fae1c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 8874064555180833050, guid: 955a29508608875439d54929d50d7b92, type: 3}
+  bulletPrefab: {fileID: 7036609796586331757, guid: f57e78e963d1e0249b4f0c8fb0afdcbb, type: 3}
   rotationSpeed: 900
   minBullets: 10
   maxBullets: 20
@@ -125,29 +124,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &7717391642020005054
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489975296433220713}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0

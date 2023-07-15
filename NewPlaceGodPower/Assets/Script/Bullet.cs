@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour
 {
     public float moveSpeed = 10f;
 
+    [SerializeField] private int BulletDMG;
+
     public float TimeC = 1.0F;
 
     public GameObject PotionPfab;
@@ -28,6 +30,8 @@ public class Bullet : MonoBehaviour
     {
         if (collision.tag == "Bot")
         {
+            BotHP bot = collision.GetComponent<BotHP>();
+            bot.BotTakeDMG(BulletDMG);
             AddDMGFild();
         }
 
