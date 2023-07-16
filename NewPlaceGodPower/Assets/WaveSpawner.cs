@@ -21,13 +21,15 @@ public class WaveSpawner : MonoBehaviour
 
     [SerializeField] private PlayerMovement Player;
 
-    private int score = 0;
+    public static int score = 0;
     public TextMeshProUGUI scoreText;
 
     public static bool _isEndGame { get; private set; }
 
     IEnumerator Start()
     {
+        _isEndGame = false;
+
         scoreText.text = "Score: " + score.ToString();
 
         ShowRetryUI.SetActive(false);
@@ -57,11 +59,11 @@ public class WaveSpawner : MonoBehaviour
                     yield return new WaitForSeconds(0.2f); // เวลาห่างระหว่างการเกิด Wave
                 }
             }
-            else if (currentWave <= 5)
+            else if (currentWave <= 20)
             {
-                var wave2 = (currentWave * 10) / 10;
+                var wave2 = (currentWave * 10) / 5;
 
-                for (int i = 0; i < currentWave * 5; i++)
+                for (int i = 0; i < currentWave * 10; i++)
                 {
                     float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
                     Vector2 spawnPosition = Random.insideUnitCircle.normalized * spawnDistance;
@@ -85,6 +87,7 @@ public class WaveSpawner : MonoBehaviour
 
             if (currentWave == waveCount && GameObject.FindGameObjectsWithTag("Bot").Length == 0)
             {
+                _isEndGame = true;
                 Message = "You Win!!";
                 ShowText.text = Message;
                 ShowRetryUI.SetActive(true);
@@ -114,6 +117,8 @@ public class WaveSpawner : MonoBehaviour
 
     public void RetryButton()
     {
+        score = 0;
+        _isEndGame = false;
         SceneManager.LoadScene(0);
     }
 
@@ -121,6 +126,7 @@ public class WaveSpawner : MonoBehaviour
     {
         if (Player.PlayerCurrentHP <= 0)
         {
+            _isEndGame = true;
             Message = "You Lose!!";
             ShowText.text = Message;
             ShowRetryUI.SetActive(true);

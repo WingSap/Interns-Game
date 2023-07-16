@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GunController : MonoBehaviour
 {
@@ -53,7 +54,6 @@ public class GunController : MonoBehaviour
             {
                 GroupBulletShoot();
             }
-
         }
 
         // ตรวจสอบการยิงเมื่อกดปุ่มซ้ายเมาส์
@@ -75,14 +75,16 @@ public class GunController : MonoBehaviour
             canShoot = true; // สามารถยิงได้อีกครั้งแล้ว
         }
 
-        if (_isActiveBullet)
+        if (WaveSpawner.score >= 500)
         {
+            _isActiveBullet = true;
             BulletSkill1.SetActive(true);
             BulletSkill2.SetActive(true);
         }
 
-        if (_isActiveGroup)
+        if (WaveSpawner.score >= 1000)
         {
+            _isActiveGroup = true;
             GroupBullet.SetActive(true);
         }
     }
@@ -103,6 +105,12 @@ public class GunController : MonoBehaviour
 
     void GroupBulletShoot()
     {
+
+        if (WaveSpawner.score > 1500)
+        {
+            cooldownGroupTime = 3.0F;
+        }
+
         currentGroupTime = 0.0f;
 
         if (_isActiveGroup)
@@ -111,30 +119,10 @@ public class GunController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("BulletPack"))
-        {
-            _isActiveBullet = true;
-        }
-
-        if (collision.gameObject.CompareTag("GroupBulletPack"))
-        {
-            _isActiveGroup = true;
-        }
-
-    }
-
     void StartCooldown()
     {
         // เริ่มต้นการนับเวลาคูลดาว
         canShoot = false;
         currentTime = 0.0f;
-    }
-
-    void StartGroupCooldown()
-    {
-        canGroupShoot = false;
-        currentGroupTime = 0.0F;
     }
 }

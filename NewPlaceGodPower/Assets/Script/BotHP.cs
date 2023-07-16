@@ -20,6 +20,9 @@ public class BotHP : MonoBehaviour
 
     public int Score;
 
+    public GameObject DeadPfab;
+    public Transform DeadPosition;
+
     private void Awake()
     {
         if (spriteRenderer == null)
@@ -41,6 +44,9 @@ public class BotHP : MonoBehaviour
         {
             BotCurrentHP = 0;
             MonsterDeath?.Invoke();
+
+            GameObject dead = Instantiate(DeadPfab, DeadPosition.position, DeadPosition.rotation);
+
             Destroy(this.gameObject);
         }
     }

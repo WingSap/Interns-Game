@@ -32,6 +32,12 @@ public class PlayerMovement : MonoBehaviour
 
     public TextMeshProUGUI playerHpText;
 
+    public GameObject PlayerSprite;
+
+    public Transform DeadPosition;
+    public GameObject DeadPfab;
+    public int Deadcount;
+
     private void Awake()
     {
         if (spriteRenderer == null)
@@ -45,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        Deadcount = 5;
+        PlayerSprite.SetActive(true);
         PlayerCurrentHP = PlayerHP;
         slider.maxValue = PlayerHP;
         slider.value = PlayerHP;
@@ -61,14 +69,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (WaveSpawner._isEndGame)
         {
+            if (PlayerCurrentHP <= 0 || PlayerCurrentHP == 0)
+            {
+                PlayerSprite.SetActive(false);
+                if(Deadcount == 5)
+                {
+                    GameObject Dead = Instantiate(DeadPfab, DeadPosition.position, DeadPosition.rotation);
+                    Deadcount = 6;
+                }
+                PlayerCurrentHP = 0;
+            }
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
             return;
-        }
-
-        if(PlayerCurrentHP <= 0 || PlayerCurrentHP == 0)
-        {
-            PlayerCurrentHP = 0;
         }
 
         // ดึงตำแหน่งเมาส์ในหน้าจอ

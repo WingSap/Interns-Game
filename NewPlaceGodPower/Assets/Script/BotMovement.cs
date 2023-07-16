@@ -15,6 +15,9 @@ public class BotMovement : MonoBehaviour
     private Transform player;
     private float shootingTimer;
 
+    public GameObject[] itemPrefabs; // รายการของไอเท็มที่ต้องการสุ่มดรอป
+    public float dropChance = 0.1f; // โอกาศในการดรอปเป็นเปอร์เซ็นต์ (10%)
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -51,5 +54,4 @@ public class BotMovement : MonoBehaviour
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
-
 }
