@@ -18,6 +18,8 @@ public class BotHP : MonoBehaviour
 
     private Color originalColor; // สีเดิมของ Sprite
 
+    public int Score;
+
     private void Awake()
     {
         if (spriteRenderer == null)

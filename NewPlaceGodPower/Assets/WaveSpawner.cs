@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public GameObject monsterPrefab; // เลือก Prefab ของมอนสเตอร์ที่ต้องการสร้าง
+    public GameObject monsterPrefab1; // เลือก Prefab ของมอนสเตอร์ที่ต้องการสร้าง
+    public GameObject monsterPrefab2;
+
+
     public int waveCount = 5; // จำนวน Wave ที่ต้องการสร้าง
     private float spawnDelay = 0f; // เวลาห่างระหว่างการเกิด Wave
     private float minSpawnDistance = 0f; // ระยะเกิดของมอนสเตอร์ (ระยะต่ำสุด)
@@ -44,13 +47,31 @@ public class WaveSpawner : MonoBehaviour
 
             currentWave++;
 
-            for (int i = 0; i < currentWave * 10; i++)
+            if(currentWave <= 2)
             {
-                float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
-                Vector2 spawnPosition = Random.insideUnitCircle.normalized * spawnDistance;
-                SpawnMonster(spawnPosition);
+                for (int i = 0; i < currentWave * 10; i++)
+                {
+                    float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
+                    Vector2 spawnPosition = Random.insideUnitCircle.normalized * spawnDistance;
+                    SpawnMonster(spawnPosition , monsterPrefab1);
 
-                yield return new WaitForSeconds(0.2f); // เวลาห่างระหว่างการเกิด Wave
+                    yield return new WaitForSeconds(0.2f); // เวลาห่างระหว่างการเกิด Wave
+                }
+            }
+            else if (currentWave <= 5)
+            {
+                for (int i = 0; i < currentWave * 10; i++)
+                {
+                    float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
+                    Vector2 spawnPosition = Random.insideUnitCircle.normalized * spawnDistance;
+                    SpawnMonster(spawnPosition, monsterPrefab1);
+                    for (int s = 0; s < (currentWave * 10) / 10; s++)
+                    {
+                        SpawnMonster(spawnPosition, monsterPrefab2);
+                    }
+
+                    yield return new WaitForSeconds(0.2f); // เวลาห่างระหว่างการเกิด Wave
+                }
             }
 
             // รอให้มอนสเตอร์ใน Wave ปัจจุบันตายก่อนที่จะไปสร้าง Wave ต่อไป
@@ -69,10 +90,10 @@ public class WaveSpawner : MonoBehaviour
 
     }
 
-    void SpawnMonster(Vector2 spawnPosition)
+    void SpawnMonster(Vector2 spawnPosition , GameObject Pfab)
     {
         // สร้างมอนสเตอร์ที่ตำแหน่งที่กำหนด
-        GameObject monster = Instantiate(monsterPrefab, spawnPosition, Quaternion.identity);
+        GameObject monster = Instantiate(Pfab, spawnPosition, Quaternion.identity);
         BotHP bot = monster.GetComponent<BotHP>();
 
         bot.MonsterDeath += AddScore;
@@ -102,7 +123,10 @@ public class WaveSpawner : MonoBehaviour
 
     void AddScore()
     {
-        score += 10;
+        GameObject Bot = GameObject.FindGameObjectWithTag("Bot");
+        BotHP botHP = Bot.GetComponent<BotHP>();
+        score += botHP.Score;
+
         scoreText.text = "Score: " + score.ToString();
     }
 }

@@ -23,7 +23,26 @@ public class PlayerMovement : MonoBehaviour
     private float iFrame;
     [SerializeField] private float setiFrame;
 
+    public SpriteRenderer spriteRenderer; // Reference เพื่อเปลี่ยนสี Sprite
+    public Color flashColor = Color.white; // สีที่ใช้ในการกระพิบ
+    public float flashDuration = 0.1f; // ระยะเวลาในการกระพิบ
+    public int flashCount = 3; // จำนวนครั้งที่กระพิบ
+
+    private Color originalColor; // สีเดิมของ Sprite
+
     public TextMeshProUGUI playerHpText;
+
+    private void Awake()
+    {
+        if (spriteRenderer == null)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        originalColor = spriteRenderer.color;
+    }
+
+
     private void Start()
     {
         PlayerCurrentHP = PlayerHP;
@@ -114,6 +133,18 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerCurrentHP -= Dmg;
             slider.value = PlayerCurrentHP;
+            StartCoroutine(Flash());
+        }
+    }
+
+    private IEnumerator Flash()
+    {
+        for (int i = 0; i < flashCount; i++)
+        {
+            spriteRenderer.color = flashColor;
+            yield return new WaitForSeconds(flashDuration);
+            spriteRenderer.color = originalColor;
+            yield return new WaitForSeconds(flashDuration);
         }
     }
 }
