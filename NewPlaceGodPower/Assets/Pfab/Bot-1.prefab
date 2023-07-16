@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ae64452c7065d47b2631c9ee76d445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BotHp: 40
+  BotHp: 30
   BotCurrentHP: 0
   spriteRenderer: {fileID: 1182583806516206846}
   flashColor: {r: 1, g: 0, b: 0.18942165, a: 0.4117647}

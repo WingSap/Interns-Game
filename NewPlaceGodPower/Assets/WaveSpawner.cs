@@ -8,7 +8,6 @@ public class WaveSpawner : MonoBehaviour
     public GameObject monsterPrefab1; // เลือก Prefab ของมอนสเตอร์ที่ต้องการสร้าง
     public GameObject monsterPrefab2;
 
-
     public int waveCount = 5; // จำนวน Wave ที่ต้องการสร้าง
     private float spawnDelay = 0f; // เวลาห่างระหว่างการเกิด Wave
     private float minSpawnDistance = 0f; // ระยะเกิดของมอนสเตอร์ (ระยะต่ำสุด)
@@ -60,15 +59,22 @@ public class WaveSpawner : MonoBehaviour
             }
             else if (currentWave <= 5)
             {
-                for (int i = 0; i < currentWave * 10; i++)
+                var wave2 = (currentWave * 10) / 10;
+
+                for (int i = 0; i < currentWave * 5; i++)
                 {
                     float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
                     Vector2 spawnPosition = Random.insideUnitCircle.normalized * spawnDistance;
                     SpawnMonster(spawnPosition, monsterPrefab1);
-                    for (int s = 0; s < (currentWave * 10) / 10; s++)
-                    {
-                        SpawnMonster(spawnPosition, monsterPrefab2);
-                    }
+
+                    yield return new WaitForSeconds(0.2f); // เวลาห่างระหว่างการเกิด Wave
+                }
+
+                for (int j = 0; j < wave2; j++)
+                {
+                    float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
+                    Vector2 spawnPosition = Random.insideUnitCircle.normalized * spawnDistance;
+                    SpawnMonster(spawnPosition, monsterPrefab2);
 
                     yield return new WaitForSeconds(0.2f); // เวลาห่างระหว่างการเกิด Wave
                 }

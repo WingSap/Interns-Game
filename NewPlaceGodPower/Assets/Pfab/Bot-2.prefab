@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0
   stoppingDistance: 100
-  shootingInterval: 2
+  shootingInterval: 0.5
   bulletPrefab: {fileID: 7036609796586331757, guid: b911332edd797924c84487943a476e7b, type: 3}
   firePoint: {fileID: 1182583806589034054}
 --- !u!114 &1182583805643964238
