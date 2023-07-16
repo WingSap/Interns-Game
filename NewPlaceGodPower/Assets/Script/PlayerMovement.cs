@@ -20,19 +20,54 @@ public class PlayerMovement : MonoBehaviour
     public int PlayerCurrentHP;
     public Slider slider;
 
+    private float bounciness = 0f; // ความเร็วของการกระเด็น
+    private float friction = 0f; // ความเสียหายที่เกิดขึ้นเมื่อชนกัน
+
+    private float iFrame;
+    [SerializeField] private float setiFrame;
+
     public TextMeshProUGUI playerHpText;
     private void Start()
     {
         PlayerCurrentHP = PlayerHP;
         slider.maxValue = PlayerHP;
         slider.value = PlayerHP;
+
         rb = GetComponent<Rigidbody2D>();
+
+        rb.sharedMaterial.bounciness = bounciness;
+        rb.sharedMaterial.friction = friction;
     }
 
     private void Update()
     {
+        iFrame -= Time.deltaTime;
+
         if (TimeToPlay.PlayTime)
             return;
+
+        if (TimeSetting._isEndGame)
+        {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            return;
+        }
+
+        if(PlayerCurrentHP <= 0 || PlayerCurrentHP == 0)
+        {
+            PlayerCurrentHP = 0;
+        }
+
+        // ดึงตำแหน่งเมาส์ในหน้าจอ
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0; // ตั้งค่า z เป็น 0 เพื่อให้วัตถุอยู่ในระดับเดียวกับหน้าจอ 2D
+
+        // คำนวณการหมุนของวัตถุตามตำแหน่งของเมาส์
+        Vector3 lookDirection = mousePosition - transform.position;
+        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+
+        // หมุนวัตถุในแกน Z
+        transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 
         // รับค่าเคลื่อนที่จากผู้เล่นในแนวระนาบ
         float moveX = Input.GetAxis("Horizontal");
@@ -41,12 +76,6 @@ public class PlayerMovement : MonoBehaviour
         // เคลื่อนที่ตามแนวระนาบ
         Vector2 movement = new Vector2(moveX, moveY);
         rb.velocity = movement * moveSpeed;
-
-        PlayerMouse = GameObject.FindGameObjectWithTag("PlayerMouse").transform;
-
-        // หันหน้าตามตำแหน่งของผู้เล่น
-        Vector2 direction = PlayerMouse.position - transform.position;
-        transform.right = direction;
 
         // ทำการ Dash เมื่อกดปุ่ม Dash
         if (Input.GetKeyDown(KeyCode.Space) && canDash)
@@ -76,6 +105,8 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
 
         canDash = true;
+
+        iFrame = setiFrame;
     }
 
     private void OnGUI()
@@ -85,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void playerTakeDmg(int Dmg)
     {
-        if(canDash)
+        if(iFrame <= 0)
         {
             PlayerCurrentHP -= Dmg;
             slider.value = PlayerCurrentHP;

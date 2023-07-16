@@ -14,28 +14,27 @@ public class TimeSetting : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TextMessage;
 
     [SerializeField] private GameObject UIRetry;
-    [SerializeField] private string Message;
+    private string Message;
 
     [SerializeField] private BotHP botHP;
     [SerializeField] private PlayerMovement playerHp;
-
-    public GameObject GroupbulletPrefab; 
     public Transform[] spawnPoints;
 
     [SerializeField] private GameObject playerGroupBullet;
     [SerializeField] private GameObject BotAiGroupBullet;
 
-    [SerializeField] private float Cooldown;
+    private float Cooldown;
+    [SerializeField] private float CooldownGroupBullet;
 
-    public bool IsPlay;
+    public static bool _isEndGame { get; private set; }
 
     private void Start()
     {
+        _isEndGame = false;
+
         sec = 90.0F;
 
         UIRetry.SetActive(false);
-
-        IsPlay = true;
     }
 
     private void OnGUI()
@@ -48,6 +47,9 @@ public class TimeSetting : MonoBehaviour
         if (TimeToPlay.PlayTime)
             return;
 
+        if (TimeSetting._isEndGame)
+            return;
+
         sec -= Time.deltaTime;
 
         Cooldown += Time.deltaTime;
@@ -57,7 +59,7 @@ public class TimeSetting : MonoBehaviour
             ActiveUIRetry();
         }
 
-        if (Cooldown >= 10.0F) 
+        if (Cooldown >= CooldownGroupBullet)
         {
             randomskill();
         }
@@ -76,12 +78,16 @@ public class TimeSetting : MonoBehaviour
             Message = "You Win!!";
             TextMessage.text = Message;
             UIRetry.SetActive(true);
+
+            _isEndGame = true;
         }
         else if (playerHp.PlayerCurrentHP <= 0 || playerHp.PlayerCurrentHP < botHP.BotCurrentHP)
         {
             Message = "You Loses!!";
             TextMessage.text = Message;
             UIRetry.SetActive(true);
+
+            _isEndGame = true;
         }
     }
 
@@ -98,7 +104,6 @@ public class TimeSetting : MonoBehaviour
         Transform spawnPoint = spawnPoints[spawnIndex];
 
         int randomNum = Random.Range(1, 3);
-
 
         if (randomNum == 1)
         {

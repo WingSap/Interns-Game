@@ -7,26 +7,24 @@ using UnityEngine.UI;
 public class BotHP : MonoBehaviour
 {
     public int BotHp;
-    public TextMeshProUGUI BotHpText;
 
     public int BotCurrentHP;
-    public Slider slider;
 
     private void Start()
     {
         BotCurrentHP = BotHp;
-        slider.maxValue = BotHp;
-        slider.value = BotHp;
+    }
+
+    private void Update()
+    {
+        if(BotCurrentHP <= 0 || BotCurrentHP == 0)
+        {
+            BotCurrentHP = 0;
+        }
     }
 
     public void BotTakeDMG(int Dmg)
     {
         BotCurrentHP -= Dmg;
-        slider.value = BotCurrentHP;
-    }
-
-    private void OnGUI()
-    {
-        BotHpText.text = "Bot HP : " + BotCurrentHP.ToString();
     }
 }

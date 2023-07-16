@@ -14,6 +14,9 @@ public class GunController : MonoBehaviour
 
     private void Update()
     {
+        if (TimeSetting._isEndGame)
+            return;
+
         // ตรวจสอบการยิงเมื่อกดปุ่มซ้ายเมาส์
         if (Input.GetMouseButton(0) && canShoot)
         {

@@ -24,6 +24,9 @@ public class BotMovement : MonoBehaviour
         if (TimeToPlay.PlayTime)
             return;
 
+        if (TimeSetting._isEndGame)
+            return;
+
         if (player != null)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
