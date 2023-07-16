@@ -8,6 +8,8 @@ public class BotBullet : MonoBehaviour
 
     public float TimeC = 1.0F;
 
+    [SerializeField] private int BulletDMG;
+
     public GameObject PotionPfab;
     public Transform ThisgameOBJ;
 
@@ -26,13 +28,10 @@ public class BotBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "wall")
-        {
-            AddDMGFild();
-        }
-
         if (collision.tag == "Player")
         {
+            PlayerMovement player = collision.GetComponent<PlayerMovement>();
+            player.playerTakeDmg(BulletDMG);
             AddDMGFild();
         }
 

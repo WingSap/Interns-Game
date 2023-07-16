@@ -7,10 +7,7 @@ public class GunController : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform BulletPoint;
 
-    [SerializeField] private float CTime;
-    [SerializeField] private bool _isShoot;
-
-    float cooldownTime = 1.0f; // เวลาคูลดาว (ในวินาที)
+    [SerializeField] private float cooldownTime = 1.0f; // เวลาคูลดาว (ในวินาที)
     float currentTime = 0.0f; // เวลาปัจจุบันที่ผ่านไปตั้งแต่ยิงครั้งก่อนหน้า
 
     bool canShoot = true; // สถานะการยิง (true = สามารถยิงได้, false = ยังไม่สามารถยิงได้)

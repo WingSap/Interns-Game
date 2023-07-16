@@ -98,10 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9d1636c21b13747b67edc058fae1c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7036609796586331757, guid: f57e78e963d1e0249b4f0c8fb0afdcbb, type: 3}
+  bulletPrefab: {fileID: 7036609796586331757, guid: c430d73129676234ba0bbde99a50fb1e, type: 3}
   rotationSpeed: 900
-  minBullets: 10
-  maxBullets: 20
+  minBullets: 30
+  maxBullets: 40
   numBullets: 0
 --- !u!50 &7062951452672249750
 Rigidbody2D:
