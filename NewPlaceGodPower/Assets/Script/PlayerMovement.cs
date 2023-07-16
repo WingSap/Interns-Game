@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
 
-    private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rb;
     private bool canDash = true;
 
     private Transform PlayerMouse;
@@ -19,9 +19,6 @@ public class PlayerMovement : MonoBehaviour
     public int PlayerHP;
     public int PlayerCurrentHP;
     public Slider slider;
-
-    private float bounciness = 0f; // ความเร็วของการกระเด็น
-    private float friction = 0f; // ความเสียหายที่เกิดขึ้นเมื่อชนกัน
 
     private float iFrame;
     [SerializeField] private float setiFrame;
@@ -34,9 +31,6 @@ public class PlayerMovement : MonoBehaviour
         slider.value = PlayerHP;
 
         rb = GetComponent<Rigidbody2D>();
-
-        rb.sharedMaterial.bounciness = bounciness;
-        rb.sharedMaterial.friction = friction;
     }
 
     private void Update()
@@ -46,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         if (TimeToPlay.PlayTime)
             return;
 
-        if (TimeSetting._isEndGame)
+        if (WaveSpawner._isEndGame)
         {
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;

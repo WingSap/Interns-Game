@@ -14,7 +14,7 @@ public class GunController : MonoBehaviour
 
     private void Update()
     {
-        if (TimeSetting._isEndGame)
+        if (WaveSpawner._isEndGame)
             return;
 
         // ตรวจสอบการยิงเมื่อกดปุ่มซ้ายเมาส์

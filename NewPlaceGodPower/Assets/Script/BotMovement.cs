@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -24,7 +25,7 @@ public class BotMovement : MonoBehaviour
         if (TimeToPlay.PlayTime)
             return;
 
-        if (TimeSetting._isEndGame)
+        if (WaveSpawner._isEndGame)
             return;
 
         if (player != null)
@@ -50,4 +51,5 @@ public class BotMovement : MonoBehaviour
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
+
 }

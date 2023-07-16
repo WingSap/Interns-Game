@@ -32,6 +32,7 @@ public class Bullet : MonoBehaviour
         {
             BotHP bot = collision.GetComponent<BotHP>();
             bot.BotTakeDMG(BulletDMG);
+
             AddDMGFild();
         }
 
