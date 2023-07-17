@@ -10,8 +10,8 @@ public class WaveSpawner : MonoBehaviour
 
     public int waveCount = 5; // จำนวน Wave ที่ต้องการสร้าง
     private float spawnDelay = 0f; // เวลาห่างระหว่างการเกิด Wave
-    private float minSpawnDistance = 0f; // ระยะเกิดของมอนสเตอร์ (ระยะต่ำสุด)
-    public float maxSpawnDistance = 5f; // ระยะเกิดของมอนสเตอร์ (ระยะสูงสุด)
+    private float minSpawnDistance = 0f;
+    public float maxSpawnDistance = 5f;
 
     [SerializeField] private int currentWave = 0;
 
