@@ -105,9 +105,9 @@ public class GunController : MonoBehaviour
             cooldownGroupTime = 3.0F;
         }
 
-        if (WaveSpawner.score > 3000)
+        else if (WaveSpawner.score > 3000)
         {
-            cooldownGroupTime = 3.0F;
+            cooldownGroupTime = 1.0F;
         }
 
         currentGroupTime = 0.0f;
