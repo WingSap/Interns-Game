@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 20
-  BulletDMG: 10
+  BulletDMG: 99999
   TimeC: 1
   PotionPfab: {fileID: 1071067858943548873, guid: 7100148452d5bf840939a8ee1bd4dbd8, type: 3}
   ThisgameOBJ: {fileID: 7196191964288078360}
