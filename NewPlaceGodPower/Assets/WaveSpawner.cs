@@ -10,7 +10,7 @@ public class WaveSpawner : MonoBehaviour
 
     public int waveCount = 5;
     private float spawnDelay = 0f;
-    private float minSpawnDistance = 0f;
+    public float minSpawnDistance = 0f;
     public float maxSpawnDistance = 5f;
 
     [SerializeField] private int currentWave = 0;
@@ -110,6 +110,7 @@ public class WaveSpawner : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, maxSpawnDistance);
+        Gizmos.DrawWireSphere(transform.position, minSpawnDistance);
     }
 
     public void RetryButton()
