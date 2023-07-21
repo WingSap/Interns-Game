@@ -63,7 +63,7 @@ public class GunController : MonoBehaviour
             Shoot();
             StartCooldown();
         }
-        else if (Input.touchCount > 0)
+        else if (Input.touchCount > 0 && canShoot)
         {
             Touch touch = Input.GetTouch(0); // ในที่นี้เราใช้นิ้วแรกที่สัมผัสจอ
             Shoot();
