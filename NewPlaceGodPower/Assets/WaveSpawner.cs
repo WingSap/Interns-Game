@@ -101,7 +101,7 @@ public class WaveSpawner : MonoBehaviour
     void SpawnMonster(Vector2 spawnPosition , GameObject Pfab)
     {
         GameObject monster = Instantiate(Pfab, spawnPosition, Quaternion.identity);
-        BotHP bot = monster.GetComponent<BotHP>();
+        Bot bot = monster.GetComponent<Bot>();
 
         bot.MonsterDeath += AddScore;
     }
@@ -134,7 +134,7 @@ public class WaveSpawner : MonoBehaviour
     void AddScore()
     {
         GameObject Bot = GameObject.FindGameObjectWithTag("Bot");
-        BotHP botHP = Bot.GetComponent<BotHP>();
+        Bot botHP = Bot.GetComponent<Bot>();
         score += botHP.Score;
 
         scoreText.text = "Score: " + score.ToString();

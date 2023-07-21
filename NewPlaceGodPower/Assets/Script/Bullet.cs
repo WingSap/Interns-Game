@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.tag == "Bot")
         {
-            BotHP bot = collision.GetComponent<BotHP>();
+            Bot bot = collision.GetComponent<Bot>();
             bot.BotTakeDMG(BulletDMG);
 
             AddDMGFild();

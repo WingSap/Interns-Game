@@ -6,17 +6,29 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class GunController : MonoBehaviour
 {
+    [Header("Player Defalt Bullet")]
+    [Space]
     public GameObject bulletPrefab;
     public Transform BulletPoint;
+    [Space]
+
+    [Header("Player Powerup Bullet")]
+    [Space]
     public Transform BulletPoint2;
     public Transform BulletPoint3;
 
     public GameObject BulletSkill1;
     public GameObject BulletSkill2;
+    [Space]
 
+    [Header("Player Skill Bullet 360 degree")]
+    [Space]
     public GameObject GroupBullet;
     public Transform GroupBulletPosition;
     public GameObject PfabGroupBullet;
+    [Space]
+
+    [HideInInspector]
 
     [SerializeField] private bool _isActiveBullet;
     [SerializeField] private bool _isActiveGroup;
@@ -34,7 +46,6 @@ public class GunController : MonoBehaviour
     {
         BulletSkill1.SetActive(false);
         BulletSkill2.SetActive(false);
-
         GroupBullet.SetActive(false);
 
     }

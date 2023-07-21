@@ -27,11 +27,11 @@ public class PlayerDMGZone : MonoBehaviour
         {
             canDamage = true;
 
-            StartCoroutine(ApplyDamage(other.GetComponent<BotHP>()));
+            StartCoroutine(ApplyDamage(other.GetComponent<Bot>()));
         }
     }
 
-    private IEnumerator ApplyDamage(BotHP botHP)
+    private IEnumerator ApplyDamage(Bot botHP)
     {
         while (canDamage)
         {
@@ -45,7 +45,7 @@ public class PlayerDMGZone : MonoBehaviour
         if (other.CompareTag("Bot"))
         {
             canDamage = false;
-            StopCoroutine(ApplyDamage(other.GetComponent<BotHP>()));
+            StopCoroutine(ApplyDamage(other.GetComponent<Bot>()));
         }
     }
 }

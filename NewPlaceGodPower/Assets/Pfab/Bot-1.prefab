@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 1182583805643964239}
   - component: {fileID: 1182583805643964235}
   - component: {fileID: 1182583805643964236}
-  - component: {fileID: 1182583805643964237}
-  - component: {fileID: 1182583805643964238}
+  - component: {fileID: 7717223538217659444}
   m_Layer: 0
   m_Name: Bot-1
   m_TagString: Bot
@@ -69,7 +68,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0062252134, y: -0.000000014901161}
@@ -85,7 +84,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.244701, y: 0.19489953}
   m_EdgeRadius: 0
---- !u!114 &1182583805643964237
+--- !u!114 &7717223538217659444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,37 +93,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1182583805643964225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 093f41987cb7f6e4c8dea6794899d566, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  stoppingDistance: 10
-  shootingInterval: 5
-  bulletPrefab: {fileID: 7036609796586331757, guid: b911332edd797924c84487943a476e7b, type: 3}
-  firePoint: {fileID: 1182583806589034054}
-  itemPrefabs: []
-  dropChance: 0.1
---- !u!114 &1182583805643964238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1182583805643964225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3ae64452c7065d47b2631c9ee76d445, type: 3}
+  m_Script: {fileID: 11500000, guid: a0e4fe6367f6a8947bc8d7ab0608872b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BotHp: 30
   BotCurrentHP: 0
   spriteRenderer: {fileID: 1182583806516206846}
-  flashColor: {r: 1, g: 0, b: 0.18942165, a: 0.4117647}
+  flashColor: {r: 1, g: 0.2415095, b: 0.2415095, a: 0.5803922}
   flashDuration: 0.1
   flashCount: 2
-  Score: 10
-  DeadPfab: {fileID: 4392654792765954308, guid: 723153c2084ad0a4da455521b9d3eff5, type: 3}
+  Score: 20
+  DeadPfab: {fileID: 4392654792765954308, guid: 65c4aad6fbba4cd4b91e9cfecdec0669, type: 3}
   DeadPosition: {fileID: 6089025930864438348}
+  moveSpeed: 2.5
+  DMG: 10
 --- !u!1 &1182583806516206832
 GameObject:
   m_ObjectHideFlags: 0
