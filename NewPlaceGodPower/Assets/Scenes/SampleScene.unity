@@ -4144,16 +4144,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7036609796586331757, guid: f57e78e963d1e0249b4f0c8fb0afdcbb, type: 3}
   BulletPoint: {fileID: 938266548}
+  cooldownTime: 0.1
+  _isActiveBullet: 0
   BulletPoint2: {fileID: 1598211637}
   BulletPoint3: {fileID: 818094779}
   BulletSkill1: {fileID: 1598211636}
   BulletSkill2: {fileID: 818094778}
+  _isActiveGroup: 0
   GroupBullet: {fileID: 641742838}
   GroupBulletPosition: {fileID: 641742839}
   PfabGroupBullet: {fileID: 7036609796586331757, guid: 1a61481f5de184048830d1c39e4ea659, type: 3}
-  _isActiveBullet: 0
-  _isActiveGroup: 0
-  cooldownTime: 0.1
   cooldownGroupTime: 5
 --- !u!114 &1755694824
 MonoBehaviour:
@@ -4167,24 +4167,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5405a51da43e34188d9b67a95c98e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  dashSpeed: 0
-  dashDuration: 0
-  dashCooldown: 1
   rb: {fileID: 1755694827}
   PlayerHP: 200
   PlayerCurrentHP: 0
   slider: {fileID: 188223398}
-  setiFrame: 0.75
-  spriteRenderer: {fileID: 1875501155}
-  flashColor: {r: 0.990566, g: 0.21960661, b: 0.414779, a: 0.49803922}
-  flashDuration: 0.1
-  flashCount: 2
   playerHpText: {fileID: 1553132731}
   PlayerSprite: {fileID: 1875501153}
+  spriteRenderer: {fileID: 1875501155}
+  flashColor: {r: 0.990566, g: 0.21960661, b: 0.414779, a: 0.49803922}
   DeadPosition: {fileID: 1006948156}
   DeadPfab: {fileID: 4392654792765954308, guid: 65c4aad6fbba4cd4b91e9cfecdec0669, type: 3}
-  Deadcount: 0
 --- !u!4 &1755694825
 Transform:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SocialPlatforms.Impl;
@@ -10,10 +11,14 @@ public class GunController : MonoBehaviour
     [Space]
     public GameObject bulletPrefab;
     public Transform BulletPoint;
+    [SerializeField] private float cooldownTime = 1.0f;
+    bool canShoot = true; 
     [Space]
 
     [Header("Player Powerup Bullet")]
     [Space]
+    [SerializeField] private bool _isActiveBullet;
+
     public Transform BulletPoint2;
     public Transform BulletPoint3;
 
@@ -23,23 +28,12 @@ public class GunController : MonoBehaviour
 
     [Header("Player Skill Bullet 360 degree")]
     [Space]
+    [SerializeField] private bool _isActiveGroup;
     public GameObject GroupBullet;
     public Transform GroupBulletPosition;
     public GameObject PfabGroupBullet;
-    [Space]
-
-    [HideInInspector]
-
-    [SerializeField] private bool _isActiveBullet;
-    [SerializeField] private bool _isActiveGroup;
-
-    [SerializeField] private float cooldownTime = 1.0f;
-
-    [SerializeField] private float cooldownGroupTime = 10.0F;
+    [SerializeField] private float cooldownGroupTime = 5.0F;
     float currentTime = 0.0f; 
-
-    bool canShoot = true; 
-
     float currentGroupTime = 0.0f;
 
     private void Awake()
@@ -47,7 +41,6 @@ public class GunController : MonoBehaviour
         BulletSkill1.SetActive(false);
         BulletSkill2.SetActive(false);
         GroupBullet.SetActive(false);
-
     }
 
     private void Update()
@@ -69,6 +62,13 @@ public class GunController : MonoBehaviour
         {
             Shoot();
             StartCooldown();
+        }
+        else if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0); // ในที่นี้เราใช้นิ้วแรกที่สัมผัสจอ
+            Shoot();
+            StartCooldown();
+            // สามารถเพิ่มโค้ดที่ควบคุมการหมุนของวัตถุตามตำแหน่งนิ้วที่นี่
         }
 
         if (!canShoot && currentTime < cooldownTime)
